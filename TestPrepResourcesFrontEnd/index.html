@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src= "node_modules/angular/angular.min.js"></script>
+		<script src= "index.js"></script>
+</head>
+<body>
+
+	<div class="container" ng-controller="indexCtrl">
+		<h1>Answer Key Locator</h1>
+
+		<button class="accordion" ng-click="clearSelectedQuestions()">SAT</button>
+		<div class="dropdown" class="panel">
+		  <table class="table">
+				<tr ng-repeat="testInst in testInstances">
+					<td class="dropdown-content" ng-if="testInst.test_id == '1'" >{{ testInst.name }}
+						<button class="button button-light" ng-click="idCollector(satReadingBtnId, testInst.id)">
+						Reading</button>
+						<button class="button button-light" ng-click="idCollector(satWritingBtnId, testInst.id)">
+						Writing + Language</button>
+						<button class="button button-light" ng-click="idCollector(satMath_1_BtnId, testInst.id)">
+						Math Test - No Calculator</button>
+						<button class="button button-light" ng-click="idCollector(satMath_2_BtnId, testInst.id)">
+						Math Test - Calculator</button>
+						<button ng-click="clearSelectedQuestions()">Clear Data</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<button class="accordion" ng-click="clearSelectedQuestions()">ACT</button>
+		<div class="panel">
+		  <table class="table">
+				<tr ng-repeat="test in testInstances">
+					<td ng-if="test.test_id == '2'" >{{ test.name }}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			<table class="table">
+				<tr ng-repeat="selectedQuestion in selectedQuestions">
+				</tr>
+				<tr>
+					<th>Test</th>
+					<th>Section</th>
+					<th>Question Number</th>
+					<th>Answer</th>
+				</tr>
+				<tr class='answerTable' ng-repeat="selectedQuestion in selectedQuestions">
+					<td> PUT IN TEST NAME </td>
+					<td>{{ selectedQuestion.section  }}</td>
+					<td>{{ selectedQuestion.question_number }} :</td>
+					<td>{{ selectedQuestion.answer }}</td>
+				</tr>
+			</table>
+		</div> 
+		
+		<div>
+<!-- 			<table class="table"> All Questions
+				<tr ng-repeat="question in questions">
+					<td>{{ question }}</td>
+					<td>{{ question.question_number }}</td>
+					<td>{{ question.answer }}</td>
+				</tr>
+			</table> -->
+		</div> 
+
+
+	</div>
+</body>
+</html>
